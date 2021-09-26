@@ -1,7 +1,13 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <imgui.h>
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
+
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include <stb_image_write.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,7 +23,7 @@ layout(std140, binding = 0) uniform PerFrameData
 	uniform int isWireframe;
 };
 
-layout (location=0) out vec3 color;
+layout (location=0) out vec2 uv;
 const vec3 pos[8] = vec3[8](
 	vec3(-1.0,-1.0, 1.0),
 	vec3( 1.0,-1.0, 1.0),
@@ -29,16 +35,16 @@ const vec3 pos[8] = vec3[8](
 	vec3( 1.0, 1.0,-1.0),
 	vec3(-1.0, 1.0,-1.0)
 );
-const vec3 col[8] = vec3[8](
-	vec3( 1.0, 0.0, 0.0),
-	vec3( 0.0, 1.0, 0.0),
-	vec3( 0.0, 0.0, 1.0),
-	vec3( 1.0, 1.0, 0.0),
+const vec2 tc[8] = vec2[8](
+	vec2( 0.0, 0.0),
+	vec2( 1.0, 0.0),
+	vec2( 1.0, 1.0),
+	vec2( 0.0, 1.0),
 
-	vec3( 1.0, 1.0, 0.0),
-	vec3( 0.0, 0.0, 1.0),
-	vec3( 0.0, 1.0, 0.0),
-	vec3( 1.0, 0.0, 0.0)
+	vec2( 0.0, 0.0),
+	vec2( 1.0, 0.0),
+	vec2( 1.0, 1.0),
+	vec2( 0.0, 1.0)
 );
 
 const int indices[36] = int[36](
@@ -60,17 +66,19 @@ void main()
 {
 	int idx = indices[gl_VertexID];
 	gl_Position = MVP * vec4(pos[idx], 1.0);
-	color = isWireframe > 0 ? vec3(0.0) : col[idx];
+	uv = tc[gl_VertexID];
+	//color = isWireframe > 0 ? vec3(0.0) : col[idx];
 }
 )";
 
 static const char* shaderCodeFragment = R"(
 #version 460 core
-layout (location=0) in vec3 color;
+layout (location=0) in vec2 uv;
 layout (location=0) out vec4 out_FragColor;
+uniform sampler2D texture0; 
 void main()
 {
-	out_FragColor = vec4(color, 1.0);
+	out_FragColor = texture(texture0, uv);
 };
 )";
 
@@ -146,6 +154,23 @@ int main(void)
 	glEnable(GL_POLYGON_OFFSET_LINE);
 	glPolygonOffset(-1.0f, -1.0);
 
+	int w, h, comp;
+	const uint8_t* img = stbi_load("../data/textures/ch2_sample3_STB.jpg", &w, &h, &comp, 3);
+
+	GLuint texture;
+	glCreateTextures(GL_TEXTURE_2D, 1, &texture);
+	glTextureParameteri(texture, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+	glTextureParameteri(texture, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+	glTextureParameteri(texture, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_BORDER);
+	glTextureParameteri(texture, GL_TEXTURE_MAX_LEVEL, 0);
+	glTextureParameteri(texture, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTextureParameteri(texture, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTextureStorage2D(texture, 1, GL_RGB8, w, h);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glTextureSubImage2D(texture, 0, 0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, img);
+	glBindTextures(0, 1, &texture);
+
+
 	while (!glfwWindowShouldClose(window))
 	{
 		int width, height;
@@ -158,6 +183,7 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		const mat4 m = glm::rotate(glm::translate(mat4(1.0), vec3(0.0f, 0.0f, -3.5f)), (float)glfwGetTime(), vec3(1.0f, 1.0f, 1.0f));
+		//const mat4 m = glm::translate(mat4(1.0), vec3(0.0f, 0.0f, -3.5f));
 		const mat4 p = glm::perspective(45.0f, ratio, 0.1f, 1000.0f);
 
 		PerFrameData perFrameData = { .mvp = p * m, .isWireframe = false };
@@ -177,6 +203,8 @@ int main(void)
 		glfwPollEvents();
 	}
 
+	glDeleteTextures(1, &texture);
+	glDeleteBuffers(1, &perFrameDataBuffer);
 	glDeleteProgram(program);
 	glDeleteShader(shaderFragment);
 	glDeleteShader(shaderVertex);
