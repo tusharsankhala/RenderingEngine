@@ -15,6 +15,7 @@ namespace RenderingEngineApplication
 		void Run();
 		void InitWindow();
 		void InitVulkan();
+		void SetupDebugMessenger();
 		void CreateVulkanInstance();
 		void MainLoop();
 		void CleanUp();
@@ -24,6 +25,7 @@ namespace RenderingEngineApplication
 		uint32_t _mWinHeight = 600;
 
 		VkInstance _mInstance;
+		VkDebugUtilsMessengerEXT debugMessenger;
 
 		GLFWwindow* _mWindow;
 	};
