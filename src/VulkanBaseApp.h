@@ -17,6 +17,7 @@ namespace RenderingEngineApplication
 		void InitVulkan();
 		void SetupDebugMessenger();
 		void PickPhysicalDevice();
+		void CreateLogicalDevice();
 		void CreateVulkanInstance();
 		void MainLoop();
 		void CleanUp();
@@ -28,6 +29,8 @@ namespace RenderingEngineApplication
 		VkInstance					_mInstance;
 		VkDebugUtilsMessengerEXT	_mDebugMessenger;
 		VkPhysicalDevice			_mPhysicalDevice = VK_NULL_HANDLE;
+		VkDevice					_mDevice;
+		VkQueue						_mGraphicsQueue;
 
 		GLFWwindow* _mWindow;
 	};
