@@ -1,11 +1,22 @@
 #include "VulkanBaseApp.h"
 
 #include <vector>
+#include <optional>
 
 namespace RenderingEngineApplication
 {
 	const std::vector<const char*> validationLayers = {
 		"VK_LAYER_KHRONOS_validation",
+	};
+
+	struct QueueFamilyIndices
+	{
+		std::optional<uint32_t> graphicFamily;
+
+		bool isComplete()
+		{
+			graphicFamily.has_value();
+		}
 	};
 
 	static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType,
@@ -59,6 +70,7 @@ namespace RenderingEngineApplication
 		InitWindow();
 		InitVulkan();
 		SetupDebugMessenger();
+		PickPhysicalDevice();
 		MainLoop();
 		CleanUp();
 	}
@@ -85,9 +97,72 @@ namespace RenderingEngineApplication
 		VkDebugUtilsMessengerCreateInfoEXT createInfo;
 		PopulateDebugMessengerCreateInfo(createInfo);
 
-		if (CreateDebugUtilsMessengerEXT(_mInstance, &createInfo, nullptr, &debugMessenger) != VK_SUCCESS)
+		if (CreateDebugUtilsMessengerEXT(_mInstance, &createInfo, nullptr, &_mDebugMessenger) != VK_SUCCESS)
 		{
 			throw std::runtime_error("Failed to set up debug messenger!");
+		}
+	}
+
+	QueueFamilyIndices FindQueueFamilies(VkPhysicalDevice device)
+	{
+		QueueFamilyIndices indices;
+
+		uint32_t queueFamilyCount = 0;
+		vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
+		std::vector<VkQueueFamilyProperties> availableQueueFamilies(queueFamilyCount);
+		vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, availableQueueFamilies.data());
+
+		int i = 0;
+		for (const auto& queueFamily : availableQueueFamilies)
+		{
+			if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT)
+			{
+				indices.graphicFamily = i;
+			}
+
+			if (indices.isComplete())
+			{
+				break;
+			}
+
+			++i;
+		}
+
+		return indices;
+	}
+
+	bool IsDeviceSuitable(VkPhysicalDevice device)
+	{
+		QueueFamilyIndices indices = FindQueueFamilies(device);
+		
+		return indices.isComplete();
+	}
+
+	void VulkanApplication::PickPhysicalDevice()
+	{
+		uint32_t physicalDeviceCount = 0;
+		vkEnumeratePhysicalDevices(_mInstance, &physicalDeviceCount, nullptr);
+
+		if (physicalDeviceCount == 0)
+		{
+			throw std::runtime_error("Failed to find GPU with vulkan support! \n");
+		}
+
+		std::vector<VkPhysicalDevice> availablePhysicalDevices(physicalDeviceCount);
+		vkEnumeratePhysicalDevices(_mInstance, &physicalDeviceCount, availablePhysicalDevices.data());
+
+		for (auto& physicalDevice : availablePhysicalDevices)
+		{
+			if (IsDeviceSuitable(physicalDevice))
+			{
+				_mPhysicalDevice = physicalDevice;
+				break;
+			}
+		}
+
+		if ( _mPhysicalDevice == VK_NULL_HANDLE)
+		{
+			throw std::runtime_error("Failed to find suitable GPU! \n");
 		}
 	}
 
@@ -103,7 +178,7 @@ namespace RenderingEngineApplication
 	{
 		if (enableValidationLayers)
 		{
-			DestroyDebugUtilsMessengerEXT(_mInstance, debugMessenger, nullptr);
+			DestroyDebugUtilsMessengerEXT(_mInstance, _mDebugMessenger, nullptr);
 		}
 
 		vkDestroyInstance(_mInstance, nullptr);
