@@ -2,7 +2,8 @@
 Simple Experimental Vulkan/DirectX Rendering Engine for Learning.
 
 In Progress:
-Vulkan Backend.
+Vulkan Backend:
+Simple GLTF Loader : Done.
 
 TODO:
 DirectX backend
