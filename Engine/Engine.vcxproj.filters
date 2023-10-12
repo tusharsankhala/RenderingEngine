@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Application">
+      <UniqueIdentifier>{bd5bab45-69b3-40da-8b68-e18b235e4ccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Foundation">
+      <UniqueIdentifier>{ce0756a1-8b4f-4374-a0cf-f5c66e48c4ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{c62e6793-1221-4b48-a703-91f01bca6856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{dfea59f4-c8e4-4873-806a-37596da6b1bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Foundation">
+      <UniqueIdentifier>{3c7e9030-a96a-477e-a029-9c9bb0594113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application">
+      <UniqueIdentifier>{56406394-1df3-4291-81b7-2a1dc181b034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ImGUI">
+      <UniqueIdentifier>{ba8b3a18-7707-42e9-b6cd-2a03aff15d8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ImGUI">
+      <UniqueIdentifier>{c76e73b1-a97c-40d1-99b0-b9af916a1f03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\External">
+      <UniqueIdentifier>{8018484e-f5f4-4a65-8880-ff88e2148e38}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\application\input.cpp">
+      <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\application\keys.cpp">
+      <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\application\window.cpp">
+      <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\graphics\command_buffer.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\graphics\engine_imgui.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\graphics\renderer.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\graphics\gpu_profiler.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\graphics\gpu_device.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\service.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\memory.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\log.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\file.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\string.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\gltf.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\assert.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\time.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\data_structures.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\bit.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\graphics\gpu_resources.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\numerics.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\process.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\imgui\imgui\imgui.cpp">
+      <Filter>Source Files\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\imgui\imgui\imgui_demo.cpp">
+      <Filter>Source Files\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\imgui\imgui\imgui_draw.cpp">
+      <Filter>Source Files\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\imgui\imgui\imgui_impl_sdl.cpp">
+      <Filter>Source Files\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\imgui\imgui\imgui_tables.cpp">
+      <Filter>Source Files\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\imgui\imgui\imgui_widgets.cpp">
+      <Filter>Source Files\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\imgui\imgui\TextEditor.cpp">
+      <Filter>Source Files\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\common\foundation\resource_manager.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\tlsf.c">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\stackwalker\StackWalker.cpp">
+      <Filter>Source Files\External</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\common\application\window.h">
+      <Filter>Header Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\application\keys.h">
+      <Filter>Header Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\graphics\gpu_device.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\graphics\command_buffer.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\graphics\renderer.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\graphics\engine_imgui.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\graphics\gpu_profiler.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\service.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\memory.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\platform.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\memory_utils.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\log.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\gltf.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\string.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\file.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\assert.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\time.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\numerics.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\application\input.h">
+      <Filter>Header Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\graphics\gpu_resource.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\graphics\gpu_enum.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\hash_map.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\process.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\data_structures.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\resource_manager.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\bit.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\foundation\array.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\imgui\imgui\imconfig.h">
+      <Filter>Header Files\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\imgui\imgui\imgui.h">
+      <Filter>Header Files\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\imgui\imgui\imgui_impl_sdl.h">
+      <Filter>Header Files\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\imgui\imgui\imgui_internal.h">
+      <Filter>Header Files\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\imgui\imgui\imgui_memory_editor.h">
+      <Filter>Header Files\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\imgui\imgui\imstb_rectpack.h">
+      <Filter>Header Files\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\imgui\imgui\imstb_textedit.h">
+      <Filter>Header Files\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\imgui\imgui\imstb_truetype.h">
+      <Filter>Header Files\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\imgui\imgui\stb_image.h">
+      <Filter>Header Files\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\imgui\imgui\TextEditor.h">
+      <Filter>Header Files\ImGUI</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
